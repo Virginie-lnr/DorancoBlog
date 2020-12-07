@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% block title %}  {% endblock %}
+
+{% block body %}
+  <header>
+    <img src=" {{ asset('image/footer2.jpg')}} " alt="rust-texture">
+    <h1>
+      <a href=" {{ path('index') }}">Bienvenue sur mon blog</a>
+    </h1>
+
+    <nav class="log-nav">
+      <p>Bonjour Nom Prenom</p>
+      <p>
+        <a href="#">Se connecter</a>
+      </p>
+      <p>
+        <a href="#">Se déconnecter</a>
+      </p>
+      <p>
+        <a href="#">Créer un compte</a>
+      </p>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}
+
+    {% endblock %}
+  </main>
+
+  <footer>
+    <img src="{{ asset('image/footer2.jpg')}} " alt="footer rust-texture">
+    <nav class="row">
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <p><a href=" {{ path('monblog_quisommesnous') }} ">Qui sommes nous?</a></p>
+        <p><a href="{{ path('monblog_cgv') }} ">CGV</a></p>
+        <p><a href="{{ path('monblog_contact') }}">Nous contacter</a></p>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-3">
+        <p><a href="{{ path('monblog_values') }}">Nos valeurs</a></p>
+        <p><a href="{{ path('monblog_becomebloggueur') }}">Devenir bloggeur</a></p>
+        <p><a href="{{ path('monblog_jointeam') }}">Rejoindre l'équipe</a></p>
+      </div>
+    </nav>
+
+    <div class="copyright">
+      <p>&copy; copyright</p>
+    </div>
+  </footer>
+{% endblock %} 

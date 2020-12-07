@@ -1,3 +1,72 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+   path: /
+   controller: App\Controller\HomeController::index
+
+# ----------------------------- ROUTES ARTICLES ------------------------------------------
+
+monblog_articles_showall:
+   path: /articles
+   controller: App\Controller\ArticleController::showAll
+
+monblog_article_show:
+   path: /article/{id}
+   controller: App\Controller\ArticleController::show
+   requirements: 
+      id: \d+
+
+monblog_article_create: 
+   path: /article/create
+   controller: App\Controller\ArticleController::create
+
+monblog_article_update: 
+   path: /article/mettre-a-jour/{id}
+   controller: App\Controller\ArticleController::update
+   requirements: 
+      id: \d+
+
+monblog_article_delete: 
+   path: /article/supprimer{id}
+   controller: App\Controller\ArticleController::delete
+   requirements: 
+      id: \d+
+# ----------------------------- ROUTES STATIQUES ------------------------------------------
+
+test: 
+   path: /test
+   controller: App\Controller\TestController:test
+
+monblog_quisommesnous:  
+   path: /qui-sommes-nous
+   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+   defaults:
+      template: "statique/quiSommesNous.html.twig"
+
+monblog_cgv:  
+   path: /cgv
+   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+   defaults:
+      template: "statique/cgv.html.twig"
+
+monblog_contact:  
+   path: /contact
+   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+   defaults:
+      template: "statique/contact.html.twig"
+
+monblog_becomebloggueur:  
+   path: /devenir-bloggueur
+   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+   defaults:
+      template: "statique/devenirBloggueur.html.twig"
+
+monblog_jointeam:  
+   path: /join-team
+   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+   defaults:
+      template: "statique/joinTeam.html.twig"
+
+monblog_values:  
+   path: /nos-valeurs
+   controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+   defaults:
+      template: "statique/values.html.twig"

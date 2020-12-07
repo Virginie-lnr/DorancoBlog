@@ -1,0 +1,33 @@
+{% extends('layout.html.twig') %}
+
+{% block content %}
+
+{% if app.request.get('_route') == 'monblog_article_create' %}
+  <h2>Ajouter un nouvel article</h2>
+{% else %}
+  <h2>Editer l'article n° {{ article.id }}</h2>
+{% endif %}
+
+{{ form_start(form) }}
+
+  {{ form_row(form.titre) }}
+
+  {{ form_label(form.contenu) }}
+  {{ form_widget(form.contenu, {"attr":{"rows":10}}) }}
+
+  {% if app.request.get('_route') == 'monblog_article_create' %}
+  <div class="form-group">
+    <button type="submit" id="article_Enregistrer" class="btn-primary btn">Ajouter l'article</button>
+  </div>
+  {% else %}
+    <div class="form-group">
+      <button type="submit" id="article_Enregistrer" class="btn-primary btn">Modifier l'article</button>
+    </div>
+  {% endif %}
+
+{{ form_end(form) }}
+{# {{ form(form) }} #}
+
+
+
+{% endblock %}

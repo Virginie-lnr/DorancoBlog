@@ -1,0 +1,53 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} {{ parent() }} - Nos articles {% endblock %}
+
+{% block content %}
+
+    <p><a href=" {{ path('monblog_article_create') }}">+ Ajouter un article</a></p>
+
+    <table class="table thead-dark">
+        <thead class="thead-dark">
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Publié le</th>
+                <th>Auteur</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        {% for article in allArticles %}
+            <tr>
+                <td>
+                    <a href=" {{ path('monblog_article_show', {'id': article.id} ) }} ">
+                        {{ article.titre }}
+                    </a>
+                </td>
+                <td>
+                    {{ article.contenu }}
+                </td>
+                <td>
+                    {{ article.dateCreation | date('d/m/Y \\à H\\hi')}}
+                </td>
+                <td>
+                    par anonyme
+                </td>
+
+                <td>
+                    <a href="{{ path('monblog_article_delete', {'id': article.id}) }}" onclick="return confirm('Are you sure you want to delete?')">
+                        Supprimer
+                    </a>
+                    |
+                    <a href="{{ path('monblog_article_update', {'id': article.id}) }}">
+                        Éditer
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

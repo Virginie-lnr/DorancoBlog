@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+    Accueil
+{% endblock %}
+
+{% block content %}
+    <div class="centered">
+        <h3>
+            <a href="{{ path('monblog_articles_showall') }}">
+                Tous nos&nbsp;articles
+            </a>
+        </h3>
+
+        <h3>
+            <a href="">
+                Tous nos&nbsp;blogueurs
+            </a>
+        </h3>
+    </div>  
+    
+    <div class="dernierArticle">
+        <h3>Dernier article du Blog :</h3>
+            <p class="auteurArticle">
+                Par <a href="#">Nom Prenom de l'auteur</a>
+            </p>
+            <p class="dateArticle">
+                {{ dernierArticle.dateCreation|date('d/m/Y \\à H\\hi')}}
+            </p>
+            
+            <h4><a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }} ">{{ dernierArticle.titre }}</a></h4>
+            <p class="articleSumary">
+              {{ dernierArticle.contenu|slice(0, 250)}} <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }}">... Lire la suite</a>
+            </p>
+    </div>
+{% endblock %}
