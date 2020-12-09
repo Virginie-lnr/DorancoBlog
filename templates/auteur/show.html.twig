@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} {{ auteur.fullName }} {% endblock %}
+
+{% block content %}    
+  <h2> {{ auteur.fullName }} </h2>
+  <h4> né(e) le: {{ auteur.dateDeNaissance | date('d/m/Y') }} </h4>
+  <hr>
+  <h3> </h3>
+
+      <table class="table thead-dark">
+        <thead class="thead-dark">
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Publié le</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        {% for article in auteur.articles %}
+            <tr>
+                <td>
+                    <a href=" {{ path('monblog_article_show', {id: article.id}) }} ">
+                        {{ article.titre }}
+                    </a>
+                </td>
+                <td>
+                    {{ article.contenu | slice(0, 100) }}
+                </td>
+
+                <td>
+                    {{ article.dateDeCreation | date('d/m/Y') }}
+                </td>
+
+                <td>
+                    <a href=" {{ path('monblog_article_delete', {id: article.id }) }} " onclick="return confirm('Are you sure you want to delete?')">
+                        Supprimer
+                    </a>
+                    |
+                    <a href="{{ path('monblog_article_update', {id: article.id }) }} ">
+                        Éditer
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

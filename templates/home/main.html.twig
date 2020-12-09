@@ -13,16 +13,17 @@
         </h3>
 
         <h3>
-            <a href="">
-                Tous nos&nbsp;blogueurs
+            <a href="{{ path('monblog_auteurs_showall') }}">
+                Tous nos&nbsp;auteurs
             </a>
         </h3>
     </div>  
     
-    <div class="dernierArticle">
-        <h3>Dernier article du Blog :</h3>
+    {% if dernierArticle is not empty %}
+        <div class="dernierArticle">
+            <h3>Dernier article du Blog :</h3>
             <p class="auteurArticle">
-                Par <a href="#">Nom Prenom de l'auteur</a>
+                Par <a href=" {{ path('monblog_auteur_show', {id: dernierArticle.auteur.id})}} ">{{ dernierArticle.auteur.fullName }}</a>
             </p>
             <p class="dateArticle">
                 {{ dernierArticle.dateCreation|date('d/m/Y \\à H\\hi')}}
@@ -30,7 +31,13 @@
             
             <h4><a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }} ">{{ dernierArticle.titre }}</a></h4>
             <p class="articleSumary">
-              {{ dernierArticle.contenu|slice(0, 250)}} <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }}">... Lire la suite</a>
+                {{ dernierArticle.contenu|slice(0, 250)}} <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }}">... Lire la suite</a>
             </p>
-    </div>
+        </div>
+    {% else %}
+        <div>
+            <h4>Aucun articles veuillez revenir plus tard!!</h4>
+        </div>
+    {% endif %}
+
 {% endblock %}

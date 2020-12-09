@@ -34,6 +34,10 @@ class ArticleController extends AbstractController
         // dump($article); 
         // dd(); 
 
+        if(!$article){
+            throw $this->createNotFoundException("il n'y a aucun article à cet id");
+        };
+
         return $this->render('article/show.html.twig', [
             'article' => $article
         ]);

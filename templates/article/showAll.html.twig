@@ -32,11 +32,11 @@
                     {{ article.dateCreation | date('d/m/Y \\à H\\hi')}}
                 </td>
                 <td>
-                    par anonyme
+                    <a href=" {{ path('monblog_auteur_show', {id: article.auteur.id}) }} ">{{ article.auteur.fullName }}</a>
                 </td>
 
                 <td>
-                    <a href="{{ path('monblog_article_delete', {'id': article.id}) }}" onclick="return confirm('Are you sure you want to delete?')">
+                    <a href=" {{ path('monblog_article_delete', {id: article.id}) }} " onclick="return confirm('Are you sure you want to delete?')">
                         Supprimer
                     </a>
                     |

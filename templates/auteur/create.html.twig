@@ -4,7 +4,11 @@
 
 {% block content %}
 
-<h2>Ajout d'un auteur</h2>
+{% if app.request.get('_route') == 'monblog_auteur_create' %}
+  <h2>Ajout d'un auteur</h2>
+{% else %}
+  <h2>Modifier un auteur</h2>
+{% endif %}
 
 {{ form(form) }}
 {# <div class="form-group">

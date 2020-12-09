@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %} {{ parent() }} - Nos articles {% endblock %}
+
+{% block content %}
+
+    <p><a href="{{ path('monblog_auteur_create') }}">+ Créer un auteur</a></p>
+
+    <table class="table thead-dark">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+        {% for auteur in allAuteurs %}
+            <tr>
+                <td>
+                    <a href=" {{ path('monblog_auteur_show', {'id' : auteur.id } ) }} ">{{ auteur.nom }}</a>
+                </td>
+                <td>
+                    {{ auteur.prenom }}
+                </td>
+                <td>
+                    {{ auteur.dateDeNaissance | date('d/m/Y') }}
+                </td>
+
+                <td>
+                    <a href="{{ path('monblog_auteur_delete', {'id': auteur.id}) }}" onclick="return confirm('Are you sure you want to delete?')">
+                        Supprimer
+                    </a>
+                    |
+                    <a href=" {{ path('monblog_auteur_update', {'id': auteur.id}) }}">
+                        Éditer
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+

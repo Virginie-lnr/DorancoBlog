@@ -14,11 +14,12 @@
 
   {{ form_label(form.contenu) }}
   {{ form_widget(form.contenu, {"attr":{"rows":10}}) }}
+  {{ form_row(form.auteur) }}
 
   {% if app.request.get('_route') == 'monblog_article_create' %}
-  <div class="form-group">
-    <button type="submit" id="article_Enregistrer" class="btn-primary btn">Ajouter l'article</button>
-  </div>
+    <div class="form-group">
+      <button type="submit" id="article_Enregistrer" class="btn-primary btn">Ajouter l'article</button>
+    </div>
   {% else %}
     <div class="form-group">
       <button type="submit" id="article_Enregistrer" class="btn-primary btn">Modifier l'article</button>

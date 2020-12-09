@@ -1,19 +1,24 @@
 {% extends 'layout.html.twig' %}
 
 {% block title %} {{ parent()}} - Article {% endblock %}
-{% block content %}    
-  <div class="show-article">
-    <h2>{{ article.titre }}</h2>
-    <h3 class="auteur-subtitle">
-        Par
-        <a href="">
-            auteur anonyme
-        </a>
-    </h3>
-    <h4>Publié le : {{ article.dateCreation|date('d/m/Y \\à H\\hi')}}</h4>
 
-    <p class="article">
-        {{ article.contenu }} 
-    </p>
-</div>
+{% block content %}    
+    
+    <div class="show-article">
+
+        <h2>{{ article.titre }}</h2>
+
+        <h3 class="auteur-subtitle">
+            Par
+            <a href=" {{ path('monblog_auteur_show', {id: article.auteur.id }) }} ">
+                {{ article.auteur.fullName }}
+            </a>
+        </h3>
+        <h4>Publié le : {{ article.dateCreation|date('d/m/Y \\à H:i')}}</h4>
+
+        <p class="article">
+            {{ article.contenu }} 
+        </p>
+    </div>
+
 {% endblock %}

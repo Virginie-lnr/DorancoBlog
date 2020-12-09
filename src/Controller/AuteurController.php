@@ -37,10 +37,74 @@ class AuteurController extends AbstractController
             $manager = $this->getDoctrine()->getManager(); 
             $manager->persist($auteur); 
             $manager->flush(); 
+            return $this->redirectToRoute('monblog_auteurs_showall');
         }
 
         return $this->render('auteur/create.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/auteurs/tous-les-auteurs", name="monblog_auteurs_showall")
+     */
+    public function showAll(){
+        $allAuteurs = $this->getDoctrine()->getRepository(Auteur::class)->findAll(); 
+        
+        return $this->render('auteur/showAll.html.twig', [
+            'allAuteurs' => $allAuteurs
+        ]);
+    }
+
+    /**
+     * @Route("/auteur/{id<\d+>}", name="monblog_auteur_show")
+     */
+    public function show($id){
+        $auteur = $this->getDoctrine()->getRepository(Auteur::class)->find($id);
+
+        return $this->render('auteur/show.html.twig', [
+            'auteur' => $auteur
+        ]);
+    }
+
+    /**
+     * @Route("/auteur/mettre-a-jour/{id<\d+>}", name="monblog_auteur_update")
+     */
+    public function update(Request $request, $id){
+
+        $manager = $this->getDoctrine()->getManager(); 
+
+        $auteur = $manager->getRepository(Auteur::class)->find($id);
+
+        // création d'un formulaire qui récupère les données 
+        $form = $this->createForm(AuteurType::class, $auteur); 
+
+        // traitements des données 
+        $form->handleRequest($request); 
+
+        if($form->isSubmitted() && $form->isValid()){
+            $manager->persist($auteur); 
+            $manager->flush(); 
+            return $this->redirectToRoute('monblog_auteurs_showall');
+        }
+
+        return $this->render('auteur/create.html.twig', [
+            'form' => $form->createView(),
+            'auteur' => $auteur
+        ]); 
+    }
+
+    /**
+     * @Route("/auteur/delete/{id<\d+>}", name="monblog_auteur_delete")
+     */
+    public function delete($id){
+        $manager = $this->getDoctrine()->getManager(); 
+
+        $auteur = $manager->getRepository(Auteur::class)->find($id); 
+
+        $manager->remove($auteur); 
+        $manager->flush(); 
+
+        return $this->redirectToRoute('monblog_auteurs_showall'); 
     }
 }
