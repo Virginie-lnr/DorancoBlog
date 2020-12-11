@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class ArticleController extends AbstractController
 {
@@ -76,6 +78,10 @@ class ArticleController extends AbstractController
         ]); 
     }
 
+    /**
+     * @isGranted("ROLE_ADMIN")
+     */
+    // @Security("has_role('ROLE_ADMIN')")
     public function update(Request $request, $id){
         $manager = $this->getDoctrine()->getManager(); 
 
@@ -104,6 +110,9 @@ class ArticleController extends AbstractController
         ]); 
     }
 
+    /**
+     * @isGranted("ROLE_ADMIN")
+     */
     public function delete($id){
         $manager = $this->getDoctrine()->getManager(); 
 

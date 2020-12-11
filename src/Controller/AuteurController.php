@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 
 class AuteurController extends AbstractController
 {
@@ -69,6 +72,7 @@ class AuteurController extends AbstractController
 
     /**
      * @Route("/auteur/mettre-a-jour/{id<\d+>}", name="monblog_auteur_update")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function update(Request $request, $id){
 
@@ -96,6 +100,7 @@ class AuteurController extends AbstractController
 
     /**
      * @Route("/auteur/delete/{id<\d+>}", name="monblog_auteur_delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete($id){
         $manager = $this->getDoctrine()->getManager(); 

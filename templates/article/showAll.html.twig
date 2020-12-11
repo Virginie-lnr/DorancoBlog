@@ -13,7 +13,9 @@
                 <th>Contenu</th>
                 <th>Publié le</th>
                 <th>Auteur</th>
+            {% if is_granted('ROLE_ADMIN') %}
                 <th>Action</th>
+            {% endif %}
             </tr>
         </thead>
         
@@ -26,7 +28,7 @@
                     </a>
                 </td>
                 <td>
-                    {{ article.contenu }}
+                    {{ article.contenu | raw }}
                 </td>
                 <td>
                     {{ article.dateCreation | date('d/m/Y \\à H\\hi')}}
@@ -35,6 +37,7 @@
                     <a href=" {{ path('monblog_auteur_show', {id: article.auteur.id}) }} ">{{ article.auteur.fullName }}</a>
                 </td>
 
+            {% if(is_granted('ROLE_ADMIN')) %}
                 <td>
                     <a href=" {{ path('monblog_article_delete', {id: article.id}) }} " onclick="return confirm('Are you sure you want to delete?')">
                         Supprimer
@@ -44,6 +47,7 @@
                         Éditer
                     </a>
                 </td>
+            {% endif %}
             </tr>
         {% endfor %}
         </tbody>

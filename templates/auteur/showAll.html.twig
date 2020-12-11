@@ -12,7 +12,9 @@
                 <th>Nom</th>
                 <th>Prénom</th>
                 <th>Date de naissance</th>
+            {% if is_granted('ROLE_ADMIN') %}
                 <th>Action</th>
+            {% endif %}
             </tr>
         </thead>
         
@@ -28,7 +30,7 @@
                 <td>
                     {{ auteur.dateDeNaissance | date('d/m/Y') }}
                 </td>
-
+            {% if is_granted('ROLE_ADMIN') %}
                 <td>
                     <a href="{{ path('monblog_auteur_delete', {'id': auteur.id}) }}" onclick="return confirm('Are you sure you want to delete?')">
                         Supprimer
@@ -38,6 +40,7 @@
                         Éditer
                     </a>
                 </td>
+            {% endif %}
             </tr>
         {% endfor %}
         </tbody>

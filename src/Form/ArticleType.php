@@ -4,9 +4,10 @@ namespace App\Form;
 
 use App\Entity\Auteur;
 use App\Entity\Article;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,7 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('titre')
-            ->add('contenu')
+            ->add('contenu', CKEditorType::class)
             // ->add('Enregistrer', SubmitType::class)
             ->add('auteur', EntityType::class, [
                 'class' => Auteur::class, 

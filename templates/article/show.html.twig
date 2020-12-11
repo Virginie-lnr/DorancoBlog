@@ -17,7 +17,7 @@
         <h4>Publié le : {{ article.dateCreation|date('d/m/Y \\à H:i')}}</h4>
 
         <p class="article">
-            {{ article.contenu }} 
+            {{ article.contenu | raw }} 
         </p>
     </div>
 

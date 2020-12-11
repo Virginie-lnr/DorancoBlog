@@ -10,16 +10,28 @@
     </h1>
 
     <nav class="log-nav">
-      <p>Bonjour Nom Prenom</p>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+      <p>Bonjour {{app.user.nom}} {{app.user.prenom}} </p>
+    {% endif %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
       <p>
-        <a href="#">Se connecter</a>
+        <a href="{{ path('app_logout')}} ">Se déconnecter</a>
       </p>
+    {% else %}
       <p>
-        <a href="#">Se déconnecter</a>
+        <a href=" {{path('app_login') }}">Se connecter</a>
       </p>
       <p>
         <a href=" {{ path('app_register') }} ">Créer un compte</a>
       </p>
+    {% endif %}
+    
+    {% if is_granted('ROLE_ADMIN') %}
+      <a href=" {{ path('app_showallusers') }} ">Les utilisateurs</a>
+    {% endif %}
+    
     </nav>
   </header>
 

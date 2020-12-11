@@ -12,6 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -30,9 +31,14 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('plainPassword', PasswordType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe doivent être identiques', 
+                'required' => true, 
+                'first_options' => ['attr' => ['placeholder' => "mot de passe"], 'label' => 'Saissez un mot de passe'], 
+                'second_options' => ['label' => 'Confirmation du mot de passe'], 
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([

@@ -1,0 +1,11 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}{{ parent() }} - Inscription{% endblock %}
+
+{% block content %}
+    <h2>Promouvoir {{ utilisateur.nom }} {{ utilisateur.prenom }} au role <strong>ROLE_ADMIN</strong> ?</h2>
+    <br>
+    <h3>Entrer le code secret pour confirmer</h3>
+
+        {{ form(form )}}
+{% endblock %}
