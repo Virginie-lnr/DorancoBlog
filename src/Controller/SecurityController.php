@@ -64,7 +64,7 @@ class SecurityController extends AbstractController
             $manager->persist($user); 
             $manager->flush(); 
 
-            return $this->redirectToRoute('index'); 
+            return $this->redirectToRoute('app_showallusers'); 
         };
 
         return $this->render('security/promoteAdmin.html.twig', [
@@ -98,7 +98,7 @@ class SecurityController extends AbstractController
             $manager->persist($user); 
             $manager->flush(); 
 
-            return $this->redirectToRoute('index'); 
+            return $this->redirectToRoute('app_showallusers'); 
         };
 
         return $this->render('security/promoteAdmin.html.twig', [

@@ -3,36 +3,48 @@
 {% block title %}  {% endblock %}
 
 {% block body %}
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href=" {{ path('index') }} ">Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a class="nav-link mr-auto" href=" {{ path('app_showallusers') }} ">Les utilisateurs</a>
+          </li>
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          <li class="nav-item">
+            <a class="nav-link ml-auto" aria-current="page" href=" {{ path('app_logout')}} ">Se déconnecter</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link ml-auto" href="{{path('app_login') }}">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_register') }}">Créer un compte</a>
+          </li>
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <header>
-    <img src=" {{ asset('image/footer2.jpg')}} " alt="rust-texture">
+    <img src=" {{ asset('image/footer2.jpg')}} " style="" alt="rust-texture">
     <h1>
-      <a href=" {{ path('index') }}">Bienvenue sur mon blog</a>
+      <a href=" {{ path('index') }}">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+          <p style="line-height:100px;">Bonjour {{app.user.nom}} {{app.user.prenom}} </p>
+        {% else %}
+          <p style="line-height:100px;">Bienvenue :) </p>
+        {% endif %}
+      </a>
     </h1>
-
-    <nav class="log-nav">
-
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <p>Bonjour {{app.user.nom}} {{app.user.prenom}} </p>
-    {% endif %}
-
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <p>
-        <a href="{{ path('app_logout')}} ">Se déconnecter</a>
-      </p>
-    {% else %}
-      <p>
-        <a href=" {{path('app_login') }}">Se connecter</a>
-      </p>
-      <p>
-        <a href=" {{ path('app_register') }} ">Créer un compte</a>
-      </p>
-    {% endif %}
-    
-    {% if is_granted('ROLE_ADMIN') %}
-      <a href=" {{ path('app_showallusers') }} ">Les utilisateurs</a>
-    {% endif %}
-    
-    </nav>
   </header>
 
   <main>

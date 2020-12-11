@@ -7,7 +7,7 @@
 {% block content %}
     <div class="centered">
         <h3>
-            <a href="{{ path('monblog_articles_showall') }}">
+            <a href="{{ path('monblog_articles_showall') }}" >
                 Tous nos&nbsp;articles
             </a>
         </h3>
@@ -18,21 +18,22 @@
             </a>
         </h3>
     </div>  
-    
+
     {% if dernierArticle is not empty %}
-        <div class="dernierArticle">
-            <h3>Dernier article du Blog :</h3>
-            <p class="auteurArticle">
-                Par <a href=" {{ path('monblog_auteur_show', {id: dernierArticle.auteur.id})}} ">{{ dernierArticle.auteur.fullName }}</a>
-            </p>
-            <p class="dateArticle">
-                {{ dernierArticle.dateCreation|date('d/m/Y \\à H\\hi')}}
-            </p>
-            
-            <h4><a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }} ">{{ dernierArticle.titre }}</a></h4>
-            <p class="articleSumary">
-                {{ dernierArticle.contenu|slice(0, 250)}} <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }}">... Lire la suite</a>
-            </p>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title ">Dernier article du blog</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    Par <a href=" {{ path('monblog_auteur_show', {id: dernierArticle.auteur.id})}} ">{{ dernierArticle.auteur.fullName }}</a>
+                </h6>
+                <small class="text-muted">{{ dernierArticle.dateCreation|date('d/m/Y \\à H\\hi')}}</small>
+                <h5>
+                    <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }} ">{{ dernierArticle.titre }}</a>
+                </h5>
+                <p class="card-text articleSumary">
+                    {{ dernierArticle.contenu|slice(0, 250) | raw}} <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }}">... Lire la suite</a>
+                </p>
+            </div>
         </div>
     {% else %}
         <div>
