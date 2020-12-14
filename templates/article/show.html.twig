@@ -7,6 +7,9 @@
     <div class="show-article">
 
         <h2>{{ article.titre }}</h2>
+        <figure>
+            <img src=" {{ asset('images/products/' ~ article.image) }}" alt="">
+        </figure>
 
         <h3 class="auteur-subtitle">
             Par

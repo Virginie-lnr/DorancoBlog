@@ -14,22 +14,32 @@
         <ul class="navbar-nav">
         {% if is_granted('ROLE_ADMIN') %}
           <li class="nav-item">
-            <a class="nav-link mr-auto" href=" {{ path('app_showallusers') }} ">Les utilisateurs</a>
+            <a class="nav-link" href=" {{ path('app_showallusers') }} ">Les utilisateurs</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href=" {{ path('monblog_articles_showall') }} ">Les articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=" {{ path('monblog_auteurs_showall') }} ">Les auteurs</a>
+          </li>
+        </ul>
         {% endif %}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-          <li class="nav-item">
-            <a class="nav-link ml-auto" aria-current="page" href=" {{ path('app_logout')}} ">Se déconnecter</a>
-          </li>
+          <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+            <ul class="navbar-nav ml-auto flex-nowrap">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href=" {{ path('app_logout')}} ">Se déconnecter</a>
+              </li>
         {% else %}
-          <li class="nav-item">
-            <a class="nav-link ml-auto" href="{{path('app_login') }}">Se connecter</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_register') }}">Créer un compte</a>
-          </li>
+              <li class="nav-item ml-auto">
+                <a class="nav-link" href="{{path('app_login') }}">Se connecter</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link ml-auto" href="{{ path('app_register') }}">Créer un compte</a>
+              </li>
+            </ul>
+          </div>
         {% endif %}
-        </ul>
       </div>
     </div>
   </nav>

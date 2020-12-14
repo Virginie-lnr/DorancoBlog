@@ -27,6 +27,9 @@
                     Par <a href=" {{ path('monblog_auteur_show', {id: dernierArticle.auteur.id})}} ">{{ dernierArticle.auteur.fullName }}</a>
                 </h6>
                 <small class="text-muted">{{ dernierArticle.dateCreation|date('d/m/Y \\à H\\hi')}}</small>
+                <figure>
+                    <img src=" {{ asset('images/products/' ~ dernierArticle.image) }}" class="card-img-top" alt="">
+                </figure>
                 <h5>
                     <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }} ">{{ dernierArticle.titre }}</a>
                 </h5>
