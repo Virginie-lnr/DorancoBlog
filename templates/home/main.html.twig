@@ -28,7 +28,7 @@
                 </h6>
                 <small class="text-muted">{{ dernierArticle.dateCreation|date('d/m/Y \\à H\\hi')}}</small>
                 <figure>
-                    <img src=" {{ asset('images/products/' ~ dernierArticle.image) }}" class="card-img-top" alt="">
+                    <img src=" {{ asset('images/articles/' ~ dernierArticle.image) }}" class="card-img-top" alt="">
                 </figure>
                 <h5>
                     <a href="{{ path('monblog_article_show', {'id': dernierArticle.id} ) }} ">{{ dernierArticle.titre }}</a>

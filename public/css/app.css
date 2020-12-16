@@ -269,3 +269,8 @@ table
 #article_Enregistrer{
     margin-top: 10px;
 }
+
+.img-show-article
+{
+    width: auto;
+}
